@@ -1,4 +1,8 @@
-package com.gameplus.indexer.model;
+package com.gameplus.indexer.indexer;
+
+import com.gameplus.indexer.model.GRC20Collection;
+import com.gameplus.indexer.model.GRC20History;
+import com.gameplus.indexer.model.GRC20NFT;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
