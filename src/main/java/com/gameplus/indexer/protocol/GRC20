@@ -1,0 +1,99 @@
+//Deploy
+{
+  "p": "grc-20",
+  "op": "deploy",
+  "name":"GamePlus Box",
+  "symbol": "GPB",
+  "maxSupply": "10000",
+  "baseTokenUri": "https://ipfs.io/game-plus/dragon/",
+  "nonce":0,
+  "signer":"mint singer pubkey"
+}
+
+//Mint
+{
+  "p": "grc-20",
+  "op": "mint",
+  "symbol":"GP",
+  "tokenId":"tokenId",
+  "metaHash":"hash256",
+  "nonce":1,
+  "sig": "metaHash + tokenId + nonce"
+}
+
+//transfer
+//just transfer inscriptions
+
+
+//Upgrade (change nft)
+{
+  "p": "grc-20",
+  "op": "upgrade",
+  "symbol":"GP",
+  "tokenId":"tokenId",
+  "metaHash":"new metaHash",
+  "nonce":2,
+  "sig": "metaHash + tokenId + nonce"
+}
+
+//Royalty set quote price
+{
+  "p": "grc-20",
+  "op": "quote-price",
+  "symbol":"GP",
+  "tokenId":"tokenId",
+  "owner":"address",
+  "price":20000,
+  "type":"quote",// quote quote-burn
+  "sig": {
+    "sig": "sats + tokenId + nonce",
+    "nonce":3
+  }
+}
+
+//Royalty Quote (change nft)
+{
+  "p": "grc-20",
+  "op": "quote",
+  "symbol":"GP",
+  "tokenId":1,
+  "quote":[
+    "inscriptionId1",
+    "inscriptionId2"
+  ],
+  "metaHash":"new metaHash",
+  "sig": {
+    "sig": "tokenId + nonce",
+    "nonce":3
+  }
+}
+
+//Synthesis (change nft)
+{
+  "p": "grc-20",
+  "op": "synthesis",
+  "symbol":"GP",
+  "tokenId":1,
+  "metaHash":"new metaHash",
+  "quote":[
+    "inscriptionId1",
+    "inscriptionId2"
+  ],
+  "sig": {
+    "sig": "tokenId + nonce",
+    "nonce":3
+  }
+}
+
+//staking
+{
+  "p":"grc-20",
+  "op":"staking",
+  "tokenId":1
+}
+//cancel-staking
+{
+  "p":"grc-20",
+  "op":"cancel-staking",
+  "tokenId":1
+}
