@@ -21,7 +21,7 @@
   "sig": "metaHash + tokenId + nonce"
 }
 
-//transfer
+//Transfer
 //just transfer inscriptions
 
 
@@ -42,13 +42,9 @@
   "op": "quote-price",
   "symbol":"GP",
   "tokenId":"tokenId",
-  "owner":"address",
   "price":20000,
-  "type":"quote",// quote quote-burn
-  "sig": {
-    "sig": "sats + tokenId + nonce",
-    "nonce":3
-  }
+  "nonce":3,
+  "sig": "price + tokenId + nonce"
 }
 
 //Royalty Quote (change nft)
@@ -62,10 +58,8 @@
     "inscriptionId2"
   ],
   "metaHash":"new metaHash",
-  "sig": {
-    "sig": "tokenId + nonce",
-    "nonce":3
-  }
+  "nonce":3,
+  "sig": "tokenId + nonce"
 }
 
 //Synthesis (change nft)
@@ -79,10 +73,8 @@
     "inscriptionId1",
     "inscriptionId2"
   ],
-  "sig": {
-    "sig": "tokenId + nonce",
-    "nonce":3
-  }
+  "nonce":3,
+  "sig": "metaHash + json(quote) + tokenId + nonce"
 }
 
 //staking

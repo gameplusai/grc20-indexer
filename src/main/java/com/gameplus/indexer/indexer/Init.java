@@ -19,6 +19,12 @@ public class Init {
             case Constant.UPGRADE:
                 Upgrade.upgrade(data);
                 break;
+            case Constant.ROYALTY:
+                Royalty.royalty(data);
+                break;
+            case Constant.QUOTE_PRICE:
+                Quote.setPrice(data);
+                break;
         }
     }
 

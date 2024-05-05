@@ -1,8 +1,7 @@
 package com.gameplus.indexer.indexer;
 
-import com.gameplus.indexer.model.GRC20Collection;
-import com.gameplus.indexer.model.GRC20History;
-import com.gameplus.indexer.model.GRC20NFT;
+import com.gameplus.indexer.constant.Constant;
+import com.gameplus.indexer.model.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,6 +10,7 @@ public class GRC20Indexer {
 
     static ConcurrentHashMap<String, GRC20Collection> GRC20CollectionInfoMap = new ConcurrentHashMap<>();
     static ConcurrentHashMap<String, GRC20History> GRC20HistoryMap = new ConcurrentHashMap<>();
+    static ConcurrentHashMap<String, Long> GRC20NFTPriceMap = new ConcurrentHashMap<>();
     //address -> symbol - > nfts
     static ConcurrentHashMap<String, Map<String, List<GRC20NFT>>> userGRC20NFTsMap = new ConcurrentHashMap<>();
     //symbol -> nfts
@@ -20,8 +20,9 @@ public class GRC20Indexer {
         return GRC20CollectionInfoMap.containsKey(symbol);
     }
 
-    public static void addGRC20History(String symbol, GRC20History history) {
-        GRC20HistoryMap.put(symbol, history);
+
+    public static void addCollection(GRC20Collection collection) {
+        GRC20CollectionInfoMap.put(collection.getSymbol(), collection);
     }
 
     public static GRC20Collection getCollection(String symbol) {
@@ -92,6 +93,28 @@ public class GRC20Indexer {
             GRC20NftsMap.put(symbol, nfts);
         }
         nfts.add(nft);
+    }
+
+    public static void putGRC20NFTPrice(String tokenId, long price) {
+        GRC20NFTPriceMap.put(tokenId, price);
+    }
+
+    public static long getGRC20NFTPrice(String tokenId) {
+        Long price = GRC20NFTPriceMap.get(tokenId);
+        if (Objects.isNull(price)) return 0;
+        return price;
+    }
+
+    public static void addInvalidHistory(String symbol, InscriptionGRC20Data data) {
+        Inscription inscription = Inscription.getInstance(data);
+        GRC20History history = GRC20History.getInstance(Constant.MINT, false, data, inscription);
+        GRC20HistoryMap.put(symbol, history);
+    }
+
+    public static void addValidHistory(String symbol, InscriptionGRC20Data data) {
+        Inscription inscription = Inscription.getInstance(data);
+        GRC20History history = GRC20History.getInstance(Constant.MINT, true, data, inscription);
+        GRC20HistoryMap.put(symbol, history);
     }
 
 

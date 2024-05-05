@@ -26,12 +26,11 @@ public class Deploy {
         //check data
         if (!grc20Collection.checkData()) return;
 
-        //get inscription
-        Inscription inscription = Inscription.getInstance(data);
+        //add collection
+        GRC20Indexer.addCollection(grc20Collection);
 
         //add history
-        GRC20History history = GRC20History.getInstance(Constant.DEPLOY, true, data, inscription);
-        GRC20Indexer.addGRC20History(symbol, history);
+        GRC20Indexer.addValidHistory(symbol, data);
 
     }
 

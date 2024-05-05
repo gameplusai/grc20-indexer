@@ -7,6 +7,8 @@ import com.gameplus.indexer.constant.Constant;
 import com.gameplus.indexer.utils.Utils;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class GRC20 {
 
@@ -26,22 +28,28 @@ public class GRC20 {
     String tokenId;
 
     @JSONField(ordinal = 6)
-    int maxSupply;
+    int price;
 
     @JSONField(ordinal = 7)
-    String baseTokenUri;
+    int maxSupply;
 
     @JSONField(ordinal = 8)
-    String metaHash;
+    String baseTokenUri;
 
     @JSONField(ordinal = 9)
-    String signer;
+    String metaHash;
 
     @JSONField(ordinal = 10)
-    String sig;
+    String signer;
 
     @JSONField(ordinal = 11)
+    String sig;
+
+    @JSONField(ordinal = 12)
     long nonce;
+
+    @JSONField(ordinal = 13)
+    List<String> quote;
 
 
     public static GRC20 parse(InscriptionGRC20Data data) {
@@ -92,12 +100,20 @@ public class GRC20 {
     }
 
     public String toJson() {
-        if (!getOp().equals(Constant.DEPLOY)) {
+        if (!getOp().equals(Constant.DEPLOY) && !getOp().equals(Constant.QUOTE_PRICE)) {
             SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
             filter.getExcludes().add(Constant.FIELD_MAX);
+            filter.getExcludes().add(Constant.FIELD_PRICE);
             return JSON.toJSONString(this, filter);
         }
-        return JSON.toJSONString(this);
+        if (getOp().equals(Constant.DEPLOY)) {
+            SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
+            filter.getExcludes().add(Constant.FIELD_PRICE);
+            return JSON.toJSONString(this, filter);
+        }
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
+        filter.getExcludes().add(Constant.FIELD_MAX);
+        return JSON.toJSONString(this, filter);
     }
 
     public String toHex() {

@@ -1,11 +1,8 @@
 package com.gameplus.indexer.indexer;
 
-import com.alibaba.fastjson.JSON;
-import com.gameplus.indexer.constant.Constant;
 import com.gameplus.indexer.model.*;
-import com.gameplus.indexer.utils.HttpUtil;
+import com.gameplus.indexer.utils.MetaUtil;
 import com.gameplus.indexer.utils.SigUtil;
-import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -33,9 +30,9 @@ public class Transfer {
         String tokenUri = collection.getGRC20TokenUri(tokenId);
         grc20NFT.setTokeUri(tokenUri);
 
-        NftMeta meta = getMeta(tokenUri);
+        NftMeta meta = MetaUtil.getMeta(tokenUri);
         if (Objects.isNull(meta)) {
-            addInvalidHistory(symbol, data);
+            GRC20Indexer.addInvalidHistory(symbol, data);
             return;
         }
 
@@ -48,12 +45,11 @@ public class Transfer {
         String verifyMsg = metaHash + tokenId + nonce;
         boolean metaVerifySuccess = SigUtil.verifySig(collection.getSigner(), verifyMsg, sig);
         if (!metaVerifySuccess) {
-            addInvalidHistory(symbol, data);
+            GRC20Indexer.addInvalidHistory(symbol, data);
             return;
         }
 
         //remove user nft
-
         GRC20Indexer.removeUserGRC20NFT(data.getFrom(), grc20NFT);
         GRC20Indexer.addUserGRC20NFT(grc20NFT);
 
@@ -63,30 +59,10 @@ public class Transfer {
         GRC20Indexer.addGRC20NFT(grc20NFT);
 
         //add valid history
-        addValidHistory(symbol, data);
+        GRC20Indexer.addValidHistory(symbol, data);
 
     }
 
-
-    private static void addInvalidHistory(String symbol, InscriptionGRC20Data data) {
-        Inscription inscription = Inscription.getInstance(data);
-        GRC20History history = GRC20History.getInstance(Constant.TRANSFER, false, data, inscription);
-        GRC20Indexer.addGRC20History(symbol, history);
-    }
-
-    private static void addValidHistory(String symbol, InscriptionGRC20Data data) {
-        Inscription inscription = Inscription.getInstance(data);
-        GRC20History history = GRC20History.getInstance(Constant.TRANSFER, true, data, inscription);
-        GRC20Indexer.addGRC20History(symbol, history);
-    }
-
-    private static NftMeta getMeta(String tokenUri) {
-        String metaData = HttpUtil.get(tokenUri);
-        if (StringUtils.hasLength(metaData)) {
-            return JSON.parseObject(metaData, NftMeta.class);
-        }
-        return null;
-    }
 
 
 }
