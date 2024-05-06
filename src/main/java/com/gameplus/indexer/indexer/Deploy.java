@@ -1,6 +1,5 @@
 package com.gameplus.indexer.indexer;
 
-import com.gameplus.indexer.constant.Constant;
 import com.gameplus.indexer.model.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +17,8 @@ public class Deploy {
         String symbol = grc20Collection.getSymbol();
 
         //check exist
-        if (GRC20Indexer.checkGRC20CollectionExist(symbol)) {
-            //dup symbol
-            return;
-        }
+        //dup symbol
+        if (GRC20Indexer.checkGRC20CollectionExist(symbol)) return;
 
         //check data
         if (!grc20Collection.checkData()) return;

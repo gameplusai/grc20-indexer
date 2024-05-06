@@ -8,8 +8,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GRC20Indexer {
 
+    //symbol -> collection
     static ConcurrentHashMap<String, GRC20Collection> GRC20CollectionInfoMap = new ConcurrentHashMap<>();
+    //symbol -> history
     static ConcurrentHashMap<String, GRC20History> GRC20HistoryMap = new ConcurrentHashMap<>();
+    //tokenId -> price
     static ConcurrentHashMap<String, Long> GRC20NFTPriceMap = new ConcurrentHashMap<>();
     //address -> symbol - > nfts
     static ConcurrentHashMap<String, Map<String, List<GRC20NFT>>> userGRC20NFTsMap = new ConcurrentHashMap<>();

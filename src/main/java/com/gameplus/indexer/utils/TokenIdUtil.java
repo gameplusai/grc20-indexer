@@ -23,11 +23,5 @@ public class TokenIdUtil {
         return tokenId;
     }
 
-    public static void main(String[] args) {
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-    }
 
 }

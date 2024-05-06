@@ -17,6 +17,11 @@ public class Utils {
         return byte2Hex(bytes);
     }
 
+    public static String hexToString(String hex) {
+       return new String(org.bitcoinj.core.Utils.HEX.decode(hex),StandardCharsets.UTF_8);
+    }
+
+
     public static String toHash256(String json) {
         byte[] bytes = json.getBytes(StandardCharsets.UTF_8);
         byte[] hashBytes = Sha256Hash.hash(bytes);
@@ -38,5 +43,9 @@ public class Utils {
         return randomStringBuffer.toString().toUpperCase();
     }
 
+    public static void main(String[] args) {
+        String test = hexToString("2062d57defd31a8bea71b464464de79141f47720cd19c006e83a952e21d0a3bd7bac006309e4537ee02a09a2093968");
+        System.out.println(test);
+    }
 
 }

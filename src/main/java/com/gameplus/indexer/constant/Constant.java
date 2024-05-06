@@ -13,5 +13,4 @@ public class Constant {
     public static final String FIELD_PRICE = "price";
     public static final int TOKEN_LENGTH = 6;
 
-
 }

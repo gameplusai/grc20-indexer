@@ -17,11 +17,4 @@ public class NonceUtil {
         return atomicInteger.getAndIncrement();
     }
 
-    public static void main(String[] args) {
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-        System.out.println(get("GPB"));
-    }
-
 }
