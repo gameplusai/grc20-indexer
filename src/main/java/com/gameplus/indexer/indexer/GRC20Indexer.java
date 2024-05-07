@@ -23,7 +23,6 @@ public class GRC20Indexer {
         return GRC20CollectionInfoMap.containsKey(symbol);
     }
 
-
     public static void addCollection(GRC20Collection collection) {
         GRC20CollectionInfoMap.put(collection.getSymbol(), collection);
     }
