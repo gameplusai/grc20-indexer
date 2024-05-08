@@ -1,5 +1,12 @@
 # GRC20 Protocol Indexer
 
+Introducing the first on-chain gaming infrastructure on Bitcoin, Game Plus leverages Bitcoin Ordinals to usher in the next level of Bitcoin-native gaming applications. GamePlus will be the gaming engine of the bitcoin ecosystem - through strategic partnerships and native solutions, GamePlus’ zkRollup powered-L2 will offer a 0 transaction fee gaming layer through zk State Channels, which composes of GRC20 Game Asset Creation, marketplace, staking, and advanced configurability (royalties, batch processing, and many others), modular yet powerful SDKs for game developers to deploy on BTC, in order to host the new era of Web3 gaming - powered and secured secured by the Bitcoin Ecosystem. Building on Babylon's Bitcoin staking protocol, Game Plus enables data integrity tracking and fraud behavior detection, which are important to game developers.
+
+Current protocols such as BRC20 and BRC721 protocols on Bitcoin, while foundational, focus on simpler applications and don't fully cater to game development. They lack features and adaptability needed for complex game scenarios. In addition, there is a lack of execution layer and no real infrastructures for game developers to deploy execution logic on L1.
+High gas costs and transaction times, a byproduct of their decentralized design, further detract from the gaming experience. The Bitcoin gaming infrastructure, still developing, doesn't fully leverage the potential of the Ordinals protocol, and the absence of a comprehensive game protocol and SDK hinders effective game development. We build Game Plus to address these pain points and enable game developers to build with state-of-the-art SDKs and deploy games on BTC chain easily.
+
+---
+
 ### GRC20-Game protocol based on Bitcoin Ordinal
 
 This document mainly introduces the GRC20 protocol and Indexer
