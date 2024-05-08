@@ -29,16 +29,16 @@ Release of new grc20 game NFT asset collection
 }
 ```` 
 
-| Key          | Required | Description                                                                                  |
-|--------------|----------|----------------------------------------------------------------------------------------------|
-| p            | Yes      | Protocol: Helps other systems identify and process grc20 events                              |
-| op           | Yes      | Operation: Type of event (deploy, mint, upgrade)                                             |
-| name         | Yes      | The collection name                                                                          |
-| symbol       | Yes      | Identifier of the grc20, case insensitive                                                    |
-| maxSupply    | Yes      | The collection max supply                                                                    |
-| baseTokenUri | Yes      | The collection all nfts base token uri                                                       |
-| nonce        | Yes      | Nonce,every collection has an independent monotonically increasing nonce                     |
-| signer       | No       | mint singer pubkey , if                                                                      |
+| Key          | Required | Description                                                              |
+|--------------|----------|--------------------------------------------------------------------------|
+| p            | Yes      | Protocol: Helps other systems identify and process grc20 events          |
+| op           | Yes      | Operation: Type of event (deploy, mint, upgrade)                         |
+| name         | Yes      | The collection name                                                      |
+| symbol       | Yes      | Identifier of the grc20, case insensitive                                |
+| maxSupply    | Yes      | The collection max supply                                                |
+| baseTokenUri | Yes      | The collection all nfts base token uri                                   |
+| nonce        | Yes      | Nonce,every collection has an independent monotonically increasing nonce |
+| signer       | No       | mint singer pubkey , If the singer is not set, everyone can mint fairly  |
 
 ### Mint
 
