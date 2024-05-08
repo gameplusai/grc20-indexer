@@ -50,12 +50,14 @@ public class Mint {
         grc20NFT.updateMetaInfo();
 
         //verify meta info
-        String metaHash = meta.getMetaHash();
-        String verifyMsg = metaHash + tokenId + nonce;
-        boolean metaVerifySuccess = SigUtil.verifySig(collection.getSigner(), verifyMsg, sig);
-        if (!metaVerifySuccess) {
-            GRC20Indexer.addInvalidHistory(symbol, data);
-            return;
+        if (collection.needVerifySig()) {
+            String metaHash = meta.getMetaHash();
+            String verifyMsg = metaHash + tokenId + nonce;
+            boolean metaVerifySuccess = SigUtil.verifySig(collection.getSigner(), verifyMsg, sig);
+            if (!metaVerifySuccess) {
+                GRC20Indexer.addInvalidHistory(symbol, data);
+                return;
+            }
         }
 
         //add user nft
@@ -68,5 +70,6 @@ public class Mint {
         GRC20Indexer.addValidHistory(symbol, data);
 
     }
+
 
 }

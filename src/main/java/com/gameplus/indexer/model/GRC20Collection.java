@@ -36,6 +36,10 @@ public class GRC20Collection {
         return collection;
     }
 
+    public boolean needVerifySig() {
+        return StringUtils.hasLength(signer);
+    }
+
     public String getGRC20TokenUri(String tokenId) {
         return baseTokenUri + tokenId;
     }

@@ -27,11 +27,13 @@ public class Quote {
 
         //verify meta info
         GRC20Collection collection = GRC20Indexer.getCollection(symbol);
-        String verifyMsg = price + tokenId + nonce;
-        boolean metaVerifySuccess = SigUtil.verifySig(collection.getSigner(), verifyMsg, sig);
-        if (!metaVerifySuccess) {
-            GRC20Indexer.addInvalidHistory(symbol, data);
-            return;
+        if (collection.needVerifySig()) {
+            String verifyMsg = price + tokenId + nonce;
+            boolean metaVerifySuccess = SigUtil.verifySig(collection.getSigner(), verifyMsg, sig);
+            if (!metaVerifySuccess) {
+                GRC20Indexer.addInvalidHistory(symbol, data);
+                return;
+            }
         }
 
         //update price
