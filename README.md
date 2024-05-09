@@ -206,7 +206,7 @@ update inscription ID should be larger than the deploy inscription ID<br/>
 
 ### Contribution
 
-GRC20 is an standard that brings game non-fungible tokens (NFTs) to the Bitcoin network. With this standard, users can create, mint, transfer, and update unique digital assets
+GRC20 is an standard that brings gamefi inscriptions to the Bitcoin network. With this standard, users can create, mint, transfer, and update unique digital assets
 
 The standard allows for a series of operations that facilitate the management of non-fungible tokens, including deployment, minting, transferring, and updating metadata. Each token is assigned a unique identifier, ensuring that each NFT is distinct and cannot be exchanged on a one-to-one basis with another NFT.
 
